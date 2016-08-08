@@ -133,7 +133,7 @@ CREATE OR REPLACE  PACKAGE BODY DATA_COMPARE_PKG AS
            --DBMS_OUTPUT.PUT_LINE ( ' TAB2_NAME' || TAB1_NAME || 'PRIMARY_KEY_VALUE'  || PRIMARY_KEY_VALUE || 'V_STATUS' || V_STATUS );
             IF V_STATUS IS NOT NULL THEN
                  --DBMS_OUTPUT.PUT_LINE ( 'ERROR FOUND' );
-               INSERT INTO REPORT_MSISDN_COMPARE_V8(TABLE_NAME,PRIMARY_KEY,STATUS )
+               INSERT INTO REPORT_COMPARE_DATA(TABLE_NAME,PRIMARY_KEY,STATUS )
                 VALUES(TAB1_NAME, PRIMARY_KEY_VALUE ,V_STATUS);
             END IF;
          ELSE
@@ -157,12 +157,12 @@ CREATE OR REPLACE  PACKAGE BODY DATA_COMPARE_PKG AS
     IS  
     ERRORS VARCHAR2(100);
     BEGIN     
-    --INSERT INTO   REPORT_MSISDN_COMPARE_V8     ( STATUS )     VALUES   (   ROWIDTOCHAR(starting_rowid) || ' '||  ROWIDTOCHAR(ending_rowid));   
+    --INSERT INTO   REPORT_COMPARE_DATA     ( STATUS )     VALUES   (   ROWIDTOCHAR(starting_rowid) || ' '||  ROWIDTOCHAR(ending_rowid));   
     COMPARE_TABLE(STARTING_ROWID,ENDING_ROWID); 
     EXCEPTION
        WHEN OTHERS  THEN
             ERRORS := 'NO JOBS RUNNING' ||SQLCODE ||  ' - ' || SQLERRM;         
-            INSERT INTO   REPORT_MSISDN_COMPARE_V8 VALUES   ( '' ,'', ERRORS); COMMIT;     
+            INSERT INTO   REPORT_COMPARE_DATA VALUES   ( '' ,'', ERRORS); COMMIT;     
              --DBMS_OUTPUT.PUT_LINE(ERRORS);
     END;
 ------------------------------------------------------------------------------------------------------------------
