@@ -17,6 +17,46 @@ PRIMARY_KEY VARCHAR(32),,
 STATUS VARCHAR(400))
 ```
 
+Change table names and primary key of the table in the script in infollowing place.
+
+```
+  TAB1_NAME VARCHAR2(30) :='A_USERS'; 
+  TAB2_NAME VARCHAR2(30) :='B_USERS'; 
+  PRIMARY_KEY VARCHAR2(30) :='USERID';
+  
+  .....
+  .....
+  
+  
+  P_REC  A_USERS%ROWTYPE;
+  T_REC  B_USERS%ROWTYPE;
+```
+
+Script will compare each record between A_USERS and B_USERS table by the primary key.
+
+Also you can exclude columns if you don't need to compare them.
+```
+ EXCLUDE_COLS VARCHAR2(400) :='''ADDRESS'', ''EMAIL''';
+  --EXCLUDE_COLS VARCHAR2(400) :=NULL;  /* make it null if you want to compare all columns */
+```
+
+
+
+
+### Running script
+
+```
+@data-compare.sql
+```
+### Result
+
+You find result of data comparison in report table REPORT_COMPARE_DATA
+```
+SELECT * FROM REPORT_COMPARE_DATA;
+```
+
+
+    
 
 
 
