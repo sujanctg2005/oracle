@@ -17,7 +17,7 @@ PRIMARY_KEY VARCHAR(32),,
 STATUS VARCHAR(400))
 ```
 
-Change table names and primary key of the table in the script in infollowing place.
+Change table names and primary key of the table in the script in following place.
 
 ```
   TAB1_NAME VARCHAR2(30) :='A_USERS'; 
